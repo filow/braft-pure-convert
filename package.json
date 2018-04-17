@@ -1,6 +1,6 @@
 {
   "name": "braft-pure-convert",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A library for braft editor to html conversion. braft编辑器转换为html文档库",
   "main": "lib/braft-pure-convert.js",
   "module": "lib/braft-pure-convert.es5.js",
