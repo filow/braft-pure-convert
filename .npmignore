@@ -1,0 +1,16 @@
+# Dependency directory
+# Commenting this out is preferred by some people, see
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
+node_modules
+CHANGELOG.md
+config
+docs
+src
+readme.md
+scripts
+.rpt2_cache
+coverage
+test
+.editorconfig
+.gitignore
+rollup.config.ts
