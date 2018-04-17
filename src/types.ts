@@ -31,8 +31,8 @@ export declare namespace DraftJS {
         offset: number
         length: number
         type: string
-        start?: number
-        end?: number
+        start: number
+        end: number
         entityKey?: number
     }
     interface BlockObject {
@@ -40,8 +40,8 @@ export declare namespace DraftJS {
             [props: string]: any
         }
         depth: number
-        entityRanges: Array<RawDraftEntityRange>
-        inlineStyleRanges: Array<RawDraftInlineStyleRange>
+        entityRanges: RawDraftEntityRange[]
+        inlineStyleRanges: RawDraftInlineStyleRange[]
         key: string
         text: string
         type: DraftBlockType
@@ -62,13 +62,14 @@ export declare namespace DraftJS {
 
 export declare namespace BraftPureConvertParams {
     type ResultValue = string | DraftJS.EntityObject
+    type TransformFunction = (
+        entity: DraftJS.EntityObject,
+        text?: string,
+        block?: DraftJS.BlockObject
+    ) => ResultValue
     interface ExtendAtomicObject {
         transformerFn: {
-            [key: string]: (
-                entity: DraftJS.EntityObject,
-                text?: string,
-                block?: DraftJS.BlockObject
-            ) => ResultValue
+            [key: string]: TransformFunction
         }
     }
 }

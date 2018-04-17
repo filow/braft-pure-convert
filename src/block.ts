@@ -11,7 +11,7 @@ import { getEntityMarkup, isAtomicEntityBlock } from './entity'
 /**
  * Mapping block-type to corresponding html tag.
  */
-const blockTypesMapping = {
+const blockTypesMapping: { [props: string]: string } = {
     unstyled: 'p',
     'header-one': 'h1',
     'header-two': 'h2',
@@ -45,8 +45,8 @@ export function getBlockStyle(data: { [props: string]: any }): string {
 export function getBlockInnerMarkup(params: {
     block: DraftJS.BlockObject
     entityMap: { [props: number]: DraftJS.EntityObject }
-    extendAtomics: BraftPureConvertParams.ExtendAtomicObject
-}): Array<BraftPureConvertParams.ResultValue> {
+    extendAtomics?: BraftPureConvertParams.ExtendAtomicObject
+}): BraftPureConvertParams.ResultValue[] {
     const { block, entityMap, extendAtomics } = params
 
     const blockMarkup: BraftPureConvertParams.ResultValue[] = []
@@ -88,7 +88,7 @@ export function getBlockTag(type: string): string {
 export function getBlockMarkup(params: {
     block: DraftJS.BlockObject
     entityMap: { [props: number]: DraftJS.EntityObject }
-    extendAtomics: BraftPureConvertParams.ExtendAtomicObject
+    extendAtomics?: BraftPureConvertParams.ExtendAtomicObject
 }): BraftPureConvertParams.ResultValue[] {
     const { block, entityMap, extendAtomics } = params
     const blockHtml = []
@@ -128,18 +128,20 @@ export function getBlockMarkup(params: {
  * The function returns an array of entity-sections in blocks.
  * These will be areas in block which have same entity or no entity applicable to them.
  */
-function getSections(params: { block: DraftJS.BlockObject }): Array<DraftJS.SelectionEntityRange> {
+function getSections(params: { block: DraftJS.BlockObject }): DraftJS.SelectionEntityRange[] {
     const { block } = params
 
-    const sections = []
+    const sections: any[] = []
     let lastOffset = 0
-    let sectionRanges: Array<DraftJS.SelectionEntityRange> = block.entityRanges.map(range => {
+    let sectionRanges: DraftJS.SelectionEntityRange[] = block.entityRanges.map(range => {
         const { offset, length, key } = range
         return {
             offset,
             length,
             key,
-            type: 'ENTITY'
+            type: 'ENTITY',
+            start: 0,
+            end: 0
         }
     })
     sectionRanges = sectionRanges.sort((s1, s2) => s1.offset - s2.offset)
@@ -176,10 +178,10 @@ function getSectionMarkup(params: {
     block: DraftJS.BlockObject
     entityMap: { [props: number]: DraftJS.EntityObject }
     section: DraftJS.SelectionEntityRange
-    extendAtomics: BraftPureConvertParams.ExtendAtomicObject
+    extendAtomics?: BraftPureConvertParams.ExtendAtomicObject
 }): BraftPureConvertParams.ResultValue {
     const { block, entityMap, section, extendAtomics } = params
-    const entityInlineMarkup = []
+    const entityInlineMarkup: any[] = []
     const inlineStyleSections = getInlineStyleSections({
         block,
         styles: ['COLOR', 'BGCOLOR', 'FONTSIZE', 'FONTFAMILY'],

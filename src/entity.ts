@@ -8,7 +8,7 @@ export function getEntityMarkup(params: {
     entityMap: { [props: number]: DraftJS.EntityObject }
     entityKey: number
     text: string
-    extendAtomics: BraftPureConvertParams.ExtendAtomicObject
+    extendAtomics?: BraftPureConvertParams.ExtendAtomicObject
     block: DraftJS.BlockObject
 }): BraftPureConvertParams.ResultValue {
     const { entityMap, entityKey, text, extendAtomics, block } = params

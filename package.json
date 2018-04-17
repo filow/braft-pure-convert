@@ -75,8 +75,9 @@
   "scripts": {
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf lib",
-    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src --excludePrivate",
+    "build": "rollup -c rollup.config.ts",
     "start": "rollup -c rollup.config.ts -w",
+    "publish": "npm run build && npm run test && npm publish",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
@@ -96,6 +97,7 @@
     }
   },
   "dependencies": {
+    "@types/lodash.flattendeep": "^4.4.3",
     "lodash.flattendeep": "^4.4.0"
   }
 }

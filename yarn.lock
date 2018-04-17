@@ -53,6 +53,16 @@
   version "22.2.3"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.2.3.tgz#0157c0316dc3722c43a7b71de3fdf3acbccef10d"
 
+"@types/lodash.flattendeep@^4.4.3":
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/@types/lodash.flattendeep/-/lodash.flattendeep-4.4.3.tgz#c2c51b11d6b7d99334f0cc9499cf6d0a6e198023"
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.14.107"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.107.tgz#b2d2ae3958bfb8ff828495cbe12214af9e4d035e"
+
 "@types/lodash@4.14.99":
   version "4.14.99"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.99.tgz#e6e10c0a4cc16c7409b3181f1e66880d2fb7d4dc"

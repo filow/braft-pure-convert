@@ -3,7 +3,7 @@ import getResult from '../helper/makeData'
 function makeInlineStyleData(text, styleRanges: any[]) {
     return [
         {
-            text: text,
+            text,
             inlineStyleRanges: styleRanges,
             type: 'unstyled'
         }

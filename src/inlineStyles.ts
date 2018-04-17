@@ -1,21 +1,7 @@
 import { DraftJS, BraftPureConvertParams } from './types'
 import { forEach } from './common'
-interface StyleArray {
-    BOLD: any[]
-    ITALIC: any[]
-    UNDERLINE: any[]
-    STRIKETHROUGH: any[]
-    CODE: any[]
-    SUPERSCRIPT: any[]
-    SUBSCRIPT: any[]
-    COLOR: any[]
-    BGCOLOR: any[]
-    FONTSIZE: any[]
-    FONTFAMILY: any[]
-    length: number
-}
 
-interface PointStyleArray {
+export interface IPointStyleArray {
     COLOR?: string
     BGCOLOR?: string
     FONTSIZE?: string
@@ -29,8 +15,23 @@ interface PointStyleArray {
     SUPERSCRIPT?: boolean
 }
 
-interface StyleSections {
-    styles: PointStyleArray
+export interface IStyleArray {
+    BOLD: any[]
+    ITALIC: any[]
+    UNDERLINE: any[]
+    STRIKETHROUGH: any[]
+    CODE: any[]
+    SUPERSCRIPT: any[]
+    SUBSCRIPT: any[]
+    COLOR: any[]
+    BGCOLOR: any[]
+    FONTSIZE: any[]
+    FONTFAMILY: any[]
+    length: number
+    [props: string]: any
+}
+export interface IStyleSections {
+    styles: IPointStyleArray
     text: string[]
     start: number
     end: number
@@ -42,17 +43,17 @@ interface StyleSections {
  */
 export function getInlineStyleSections(params: {
     block: DraftJS.BlockObject
-    styles: Array<string>
+    styles: string[]
     start: number
     end: number
-}): Array<StyleSections> {
+}): IStyleSections[] {
     const { block, styles, start, end } = params
 
     const styleSections = []
     const { text } = block
     if (text.length > 0) {
         const inlineStyles = getStyleArrayForBlock(block)
-        let section
+        let section: any = {}
         for (let i = start; i < end; i += 1) {
             if (i !== start && sameStyleAsPrevious(inlineStyles, styles, i)) {
                 section.text.push(text[i])
@@ -72,12 +73,12 @@ export function getInlineStyleSections(params: {
 }
 
 /**
-* The method returns markup for section to which inline styles
-like color, background-color, font-size are applicable.
-*/
+ * The method returns markup for section to which inline styles
+ * like color, background-color, font-size are applicable.
+ */
 export function getInlineStyleSectionMarkup(
     block: DraftJS.BlockObject,
-    styleSection: StyleSections
+    styleSection: IStyleSections
 ): string {
     const styleTagSections = getInlineStyleSections({
         block,
@@ -104,7 +105,7 @@ export function getInlineStyleSectionMarkup(
 /**
  * Function returns html for text depending on inline style tags applicable to it.
  */
-export function addStylePropertyMarkup(styles: PointStyleArray, text: string): string {
+export function addStylePropertyMarkup(styles: IPointStyleArray, text: string): string {
     if (styles && (styles.COLOR || styles.BGCOLOR || styles.FONTSIZE || styles.FONTFAMILY)) {
         let styleString = 'style="'
         if (styles.COLOR) {
@@ -131,7 +132,7 @@ export function addStylePropertyMarkup(styles: PointStyleArray, text: string): s
  * The method returns markup for section to which inline styles
  * like BOLD, ITALIC, UNDERLINE, STRIKETHROUGH, CODE, SUPERSCRIPT, SUBSCRIPT are applicable.
  */
-function getStyleTagSectionMarkup(styleSection: StyleSections): string {
+function getStyleTagSectionMarkup(styleSection: IStyleSections): string {
     const { styles, text } = styleSection
     let content = getSectionText(text)
     forEach(styles, (style, value) => {
@@ -165,7 +166,7 @@ export function addInlineStyleMarkup(style: string, content: string, value: bool
 /**
  * The function returns text for given section of block after doing required character replacements.
  */
-function getSectionText(text: Array<string>): string {
+function getSectionText(text: string[]): string {
     if (text && text.length > 0) {
         const chars = text.map(ch => {
             switch (ch) {
@@ -189,7 +190,7 @@ function getSectionText(text: Array<string>): string {
 /**
  * The function will return array of inline styles applicable to the block.
  */
-function getStyleArrayForBlock(block: DraftJS.BlockObject): StyleArray {
+function getStyleArrayForBlock(block: DraftJS.BlockObject): IStyleArray {
     const { text, inlineStyleRanges } = block
     const inlineStyles = {
         BOLD: new Array(text.length),
@@ -233,8 +234,8 @@ function getStyleArrayForBlock(block: DraftJS.BlockObject): StyleArray {
  * are same as that on the previous offset.
  */
 export function sameStyleAsPrevious(
-    inlineStyles: StyleArray,
-    styles: Array<string>,
+    inlineStyles: IStyleArray,
+    styles: string[],
     index: number
 ): boolean {
     let sameStyled = true
@@ -251,8 +252,8 @@ export function sameStyleAsPrevious(
 /**
  * The function will return inline style applicable at some offset within a block.
  */
-export function getStylesAtOffset(inlineStyles: StyleArray, offset: number): PointStyleArray {
-    const styles: PointStyleArray = {}
+export function getStylesAtOffset(inlineStyles: IStyleArray, offset: number): IPointStyleArray {
+    const styles: IPointStyleArray = {}
     if (inlineStyles.COLOR[offset]) {
         styles.COLOR = inlineStyles.COLOR[offset]
     }

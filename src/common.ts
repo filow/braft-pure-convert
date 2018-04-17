@@ -67,11 +67,11 @@ export function getHTMLAttributeText(attrList: {
     [props: string]: any
 }) {
     let result = ''
-    forEach(attrList, function(k, v) {
+    forEach(attrList, (k, v) => {
         if (!v) return
         if (k === 'styles') {
             let styleText = ''
-            forEach(v, function(styleKey, styleVal) {
+            forEach(v, (styleKey, styleVal) => {
                 if (!styleVal) return
                 styleText += `${styleKey}: ${styleVal};`
             })
@@ -87,7 +87,7 @@ export function getHTMLAttributeText(attrList: {
 
 export function mergeTextAndObject(list: any[]): BraftPureConvertParams.ResultValue[] {
     let stringBuffer = ''
-    const result = []
+    const result: BraftPureConvertParams.ResultValue[] = []
     const flattedData = flattenDeep(list)
 
     flattedData.forEach(item => {
@@ -108,7 +108,7 @@ export function mergeTextAndObject(list: any[]): BraftPureConvertParams.ResultVa
 
 export function trimEmptyElements(list: BraftPureConvertParams.ResultValue[]) {
     let hasStartingContent = false
-    const result = []
+    const result: BraftPureConvertParams.ResultValue[] = []
     list.forEach(item => {
         if (hasStartingContent) {
             return result.push(item)

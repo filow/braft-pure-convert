@@ -1,7 +1,7 @@
 import { DraftJS } from '../../src/types'
 import BraftPureConvert from '../../src'
 
-export function makeData(blocks: Array<any>, entityMap = {}): DraftJS.RawEditorState {
+export function makeData(blocks: any[], entityMap = {}): DraftJS.RawEditorState {
     const blockList = blocks.map(item => {
         return Object.assign(
             {
@@ -24,7 +24,7 @@ export function makeData(blocks: Array<any>, entityMap = {}): DraftJS.RawEditorS
     }
 }
 
-export default function getResult(blocks: Array<any>, entityMap = {}) {
+export default function getResult(blocks: any[], entityMap = {}) {
     const data = makeData(blocks, entityMap)
     const result = BraftPureConvert({
         rawState: data

@@ -116,7 +116,7 @@ describe('atomic components', () => {
     })
 
     it('audio', () => {
-        let result = getResult(
+        const result = getResult(
             [
                 {
                     text: ' ',
@@ -141,7 +141,7 @@ describe('atomic components', () => {
     })
 
     it('audio', () => {
-        let result = getResult(
+        const result = getResult(
             [
                 {
                     text: ' ',
@@ -166,7 +166,7 @@ describe('atomic components', () => {
     })
 
     it('video', () => {
-        let result = getResult(
+        const result = getResult(
             [
                 {
                     text: ' ',

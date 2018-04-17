@@ -1,21 +1,26 @@
 import { getHTMLAttributeText } from '../common'
-export default {
+import { BraftPureConvertParams } from '../types'
+const transformers: {
+    [props: string]: BraftPureConvertParams.TransformFunction
+} = {
     link(entity, text) {
         const targetOption = entity.data.targetOption || '_self'
         return `<a href="${entity.data.href}" target="${targetOption}">${text}</a>`
     },
     image(entity, text, block) {
-        let imageWrapStyle: { float?: string; ['text-align']?: string } = {}
+        const imageWrapStyle: { float?: string; ['text-align']?: string } = {}
         let styledClassName = ''
 
-        if (block.data.float) {
-            imageWrapStyle.float = block.data.float
-            styledClassName += ' float-' + block.data.float
-        } else if (block.data.alignment) {
-            imageWrapStyle['text-align'] = block.data.alignment
-            styledClassName += ' align-' + block.data.alignment
+        if (block && block.data) {
+            if (block.data.float) {
+                imageWrapStyle.float = block.data.float
+                styledClassName += ' float-' + block.data.float
+            } else if (block.data.alignment) {
+                imageWrapStyle['text-align'] = block.data.alignment
+                styledClassName += ' align-' + block.data.alignment
+            }
         }
-        let { url, link, link_target, width, height } = entity.data
+        const { url, link, link_target, width, height } = entity.data
         let result = `<div class="media-wrap image-wrap${styledClassName}" ${getHTMLAttributeText({
             styles: imageWrapStyle
         })}>`
@@ -45,7 +50,7 @@ export default {
         }" /></div>`
     },
     video(entity) {
-        let { url, width, height } = entity.data
+        const { url, width, height } = entity.data
         return `<div class="media-wrap video-wrap"><video controls src="${
             entity.data.url
         }" ${getHTMLAttributeText({
@@ -54,7 +59,7 @@ export default {
         })}/></div>`
     }
 }
-
+export default transformers
 // export const defaultFontFamilies = [{
 //     name: 'Araial',
 //     family: 'Arial, Helvetica, sans-serif'

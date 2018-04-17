@@ -9,11 +9,11 @@ export default function braftPureConvert(params: {
     extendAtomics?: BraftPureConvertParams.ExtendAtomicObject
 }): ConvertResult {
     const { rawState, extendAtomics } = params
-    const result: Array<ConvertResult> = []
+    const result: ConvertResult[] = []
     if (rawState) {
         const { blocks, entityMap } = rawState
         if (blocks && blocks.length > 0) {
-            let listBlocks: Array<DraftJS.BlockObject> = []
+            let listBlocks: DraftJS.BlockObject[] = []
             blocks.forEach(block => {
                 if (isList(block.type)) {
                     listBlocks.push(block)

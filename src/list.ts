@@ -12,14 +12,14 @@ export function isList(blockType: string): any {
  * Function will return html markup for a list block.
  */
 export function getListMarkup(params: {
-    listBlocks: Array<DraftJS.BlockObject>
+    listBlocks: DraftJS.BlockObject[]
     entityMap: { [props: number]: DraftJS.EntityObject }
-    extendAtomics: BraftPureConvertParams.ExtendAtomicObject
-}): Array<BraftPureConvertParams.ResultValue> {
+    extendAtomics?: BraftPureConvertParams.ExtendAtomicObject
+}): BraftPureConvertParams.ResultValue[] {
     const { listBlocks, entityMap, extendAtomics } = params
-    const listHtml: Array<any> = []
-    let nestedListBlock: Array<DraftJS.BlockObject> = []
-    let previousBlock
+    const listHtml: any[] = []
+    let nestedListBlock: DraftJS.BlockObject[] = []
+    let previousBlock: DraftJS.BlockObject | null = null
     listBlocks.forEach(block => {
         let nestedBlock = false
         if (!previousBlock) {
@@ -71,6 +71,8 @@ export function getListMarkup(params: {
             })
         )
     }
-    listHtml.push(`</${getBlockTag(previousBlock.type)}>`)
+    if (previousBlock) {
+        listHtml.push(`</${getBlockTag((previousBlock as any).type)}>`)
+    }
     return listHtml
 }
