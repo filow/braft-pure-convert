@@ -106,7 +106,10 @@ export function mergeTextAndObject(list: any[]): BraftPureConvertParams.ResultVa
     return result
 }
 
-export function trimEmptyElements(list: BraftPureConvertParams.ResultValue[]) {
+export function trimEmptyElements(
+    list: BraftPureConvertParams.ResultValue[],
+    options?: { stripEmptyLeadingTags?: boolean }
+) {
     let hasStartingContent = false
     const result: BraftPureConvertParams.ResultValue[] = []
     list.forEach(item => {
@@ -118,5 +121,18 @@ export function trimEmptyElements(list: BraftPureConvertParams.ResultValue[]) {
             result.push(item)
         }
     })
+    if (options && options.stripEmptyLeadingTags) {
+        let firstTextElement = result[0]
+        if (typeof firstTextElement === 'string') {
+            while (firstTextElement.indexOf('<p></p>') === 0) {
+                firstTextElement = firstTextElement.substr(7)
+            }
+            if (firstTextElement === '') {
+                result.splice(0, 1)
+            } else {
+                result[0] = firstTextElement
+            }
+        }
+    }
     return result
 }

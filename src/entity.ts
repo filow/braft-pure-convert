@@ -20,7 +20,13 @@ export function getEntityMarkup(params: {
     } else if (defaultAtomicTransformer[type]) {
         result = defaultAtomicTransformer[type](entity, text, block)
     }
-    return result ? result : text
+    if (result) {
+        return result
+    }
+    if (extendAtomics && extendAtomics.notFound) {
+        return extendAtomics.notFound(entity, text, block)
+    }
+    return text
 }
 
 /**

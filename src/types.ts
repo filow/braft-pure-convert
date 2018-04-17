@@ -68,8 +68,9 @@ export declare namespace BraftPureConvertParams {
         block?: DraftJS.BlockObject
     ) => ResultValue
     interface ExtendAtomicObject {
-        transformerFn: {
+        transformerFn?: {
             [key: string]: TransformFunction
         }
+        notFound?: TransformFunction
     }
 }

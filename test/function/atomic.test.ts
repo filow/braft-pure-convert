@@ -250,4 +250,41 @@ describe('atomic components', () => {
             }
         ])
     })
+
+    it('customElement failure', () => {
+        const data = makeData(
+            [
+                {
+                    text: ' ',
+                    type: 'atomic',
+                    entityRanges: [{ offset: 0, length: 1, key: 0 }]
+                }
+            ],
+            {
+                '0': {
+                    type: 'CUSTOM',
+                    mutability: 'IMMUTABLE',
+                    data: {
+                        url: 'http://someplace/test.mp4',
+                        type: 'CUSTOM'
+                    }
+                }
+            }
+        )
+        const result = BraftPureConvert({
+            rawState: data,
+            extendAtomics: {
+                notFound(entity) {
+                    return entity
+                }
+            }
+        })
+        expect(result).toMatchObject([
+            {
+                data: { type: 'CUSTOM', url: 'http://someplace/test.mp4' },
+                mutability: 'IMMUTABLE',
+                type: 'CUSTOM'
+            }
+        ])
+    })
 })

@@ -7,6 +7,7 @@ export type ConvertResult = BraftPureConvertParams.ResultValue[]
 export default function braftPureConvert(params: {
     rawState: DraftJS.RawEditorState
     extendAtomics?: BraftPureConvertParams.ExtendAtomicObject
+    stripEmptyLeadingTags?: boolean
 }): ConvertResult {
     const { rawState, extendAtomics } = params
     const result: ConvertResult[] = []
@@ -47,5 +48,7 @@ export default function braftPureConvert(params: {
             }
         }
     }
-    return trimEmptyElements(mergeTextAndObject(result))
+    return trimEmptyElements(mergeTextAndObject(result), {
+        stripEmptyLeadingTags: params.stripEmptyLeadingTags
+    })
 }

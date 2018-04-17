@@ -78,7 +78,7 @@
     "prebuild": "rimraf lib",
     "build": "rollup -c rollup.config.ts",
     "start": "rollup -c rollup.config.ts -w",
-    "publish": "npm run build && npm run test && npm publish",
+    "publish": "npm run build && npm run test",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
