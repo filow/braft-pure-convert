@@ -8,6 +8,7 @@
   "devDependencies": {
     "@types/draft-js": "^0.10.22",
     "@types/jest": "^22.0.0",
+    "@types/lodash.flattendeep": "^4.4.3",
     "@types/node": "^9.3.0",
     "colors": "^1.1.2",
     "commitizen": "^2.9.6",
@@ -97,7 +98,6 @@
     }
   },
   "dependencies": {
-    "@types/lodash.flattendeep": "^4.4.3",
     "lodash.flattendeep": "^4.4.0"
   }
 }
