@@ -133,6 +133,17 @@ export function trimEmptyElements(
                 result[0] = firstTextElement
             }
         }
+        let lastTextElement = result[result.length - 1]
+        if (typeof lastTextElement === 'string') {
+            while (lastTextElement.lastIndexOf('<p></p>') === lastTextElement.length - 7) {
+                lastTextElement = lastTextElement.substring(0, lastTextElement.length - 7)
+            }
+            if (lastTextElement === '') {
+                result.splice(result.length - 1, 1)
+            } else {
+                result[result.length - 1] = lastTextElement
+            }
+        }
     }
     return result
 }
