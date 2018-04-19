@@ -15,9 +15,14 @@ const transformers: {
             if (block.data.float) {
                 imageWrapStyle.float = block.data.float
                 styledClassName += ' float-' + block.data.float
-            } else if (block.data.alignment) {
+            } else {
+                styledClassName += ' float-none'
+            }
+            if (block.data.alignment) {
                 imageWrapStyle['text-align'] = block.data.alignment
                 styledClassName += ' align-' + block.data.alignment
+            } else {
+                styledClassName += ' align-none'
             }
         }
         const { url, link, link_target, width, height } = entity.data

@@ -58,7 +58,7 @@ describe('atomic components', () => {
             }
         )
         expect(result).toMatchObject([
-            '<div class="media-wrap image-wrap align-center" style="text-align: center;" ><img src="http://someplace/test.png" height="50px" style="height: 50px;" /></div>'
+            '<div class="media-wrap image-wrap float-none align-center" style="text-align: center;" ><img src="http://someplace/test.png" height="50px" style="height: 50px;" /></div>'
         ])
 
         result = getResult(
@@ -83,7 +83,7 @@ describe('atomic components', () => {
             }
         )
         expect(result).toMatchObject([
-            '<div class="media-wrap image-wrap" ><img src="http://someplace/test.png" /></div>'
+            '<div class="media-wrap image-wrap float-none align-none" ><img src="http://someplace/test.png" /></div>'
         ])
 
         result = getResult(
@@ -111,7 +111,7 @@ describe('atomic components', () => {
             }
         )
         expect(result).toMatchObject([
-            '<div class="media-wrap image-wrap float-right" style="float: right;" ><a style="display: inline-block" href="http://a.com" target="_self"><img src="http://someplace/test.png" width="40px" style="width: 40px;" /></a></div>'
+            '<div class="media-wrap image-wrap float-right align-none" style="float: right;" ><a style="display: inline-block" href="http://a.com" target="_self"><img src="http://someplace/test.png" width="40px" style="width: 40px;" /></a></div>'
         ])
     })
 
