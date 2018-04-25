@@ -109,10 +109,10 @@ export function addStylePropertyMarkup(styles: IPointStyleArray, text: string): 
     if (styles && (styles.COLOR || styles.BGCOLOR || styles.FONTSIZE || styles.FONTFAMILY)) {
         let styleString = 'style="'
         if (styles.COLOR) {
-            styleString += `color: ${styles.COLOR};`
+            styleString += `color: #${styles.COLOR};`
         }
         if (styles.BGCOLOR) {
-            styleString += `background-color: ${styles.BGCOLOR};`
+            styleString += `background-color: #${styles.BGCOLOR};`
         }
         if (styles.FONTSIZE) {
             styleString += `font-size: ${styles.FONTSIZE}${

@@ -154,7 +154,7 @@ describe('list test', () => {
             }
         ])
         expect(result).toMatchObject([
-            '<ul><li>1<em>2</em>3</li><li><span style="color: F32784;"><strong>45</strong></span>6</li></ul><ol><li>7<strong>8</strong>9</li></ol>'
+            '<ul><li>1<em>2</em>3</li><li><span style="color: #F32784;"><strong>45</strong></span>6</li></ul><ol><li>7<strong>8</strong>9</li></ol>'
         ])
     })
     // it('fullTest', () => {

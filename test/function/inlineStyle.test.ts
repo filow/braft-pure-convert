@@ -14,7 +14,7 @@ describe('inline style', () => {
                 ]
             }
         ])
-        expect(result).toMatchObject(['<p>1<span style="color: 345677;">2</span>3</p>'])
+        expect(result).toMatchObject(['<p>1<span style="color: #345677;">2</span>3</p>'])
     })
     it('BGCOLOR', () => {
         const result = getResult([
@@ -29,7 +29,7 @@ describe('inline style', () => {
                 ]
             }
         ])
-        expect(result).toMatchObject(['<p>1<span style="background-color: 345677;">2</span>3</p>'])
+        expect(result).toMatchObject(['<p>1<span style="background-color: #345677;">2</span>3</p>'])
     })
     it('FONTSIZE', () => {
         const result = getResult([
