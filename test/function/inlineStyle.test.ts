@@ -61,4 +61,30 @@ describe('inline style', () => {
         ])
         expect(result).toMatchObject(['<p>1<span style="font-family: Arial;">2</span>3</p>'])
     })
+    it('block inline style', () => {
+        let result = getResult([
+            {
+                data: {
+                    textAlign: 'left'
+                }
+            }
+        ])
+        expect(result).toMatchObject(['<p></p>'])
+        result = getResult([
+            {
+                data: {
+                    textAlign: 'center'
+                }
+            }
+        ])
+        expect(result).toMatchObject(['<p style="text-align:center"></p>'])
+        result = getResult([
+            {
+                data: {
+                    textAlign: 'right'
+                }
+            }
+        ])
+        expect(result).toMatchObject(['<p style="text-align:right"></p>'])
+    })
 })

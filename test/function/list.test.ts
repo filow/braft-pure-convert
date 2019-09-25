@@ -129,7 +129,7 @@ describe('list test', () => {
                 }
             }
         ])
-        expect(result).toMatchObject(['<ol><li style="line-height:1.5;">123</li></ol>'])
+        expect(result).toMatchObject(['<ol><li style="line-height:1.5">123</li></ol>'])
     })
 
     it('inline-style', () => {

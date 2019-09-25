@@ -25,17 +25,29 @@ const blockTypesMapping: { [props: string]: string } = {
     code: 'pre'
 }
 
+const blockDataStyleMap: { [props: string]: string } = {
+    textAlign: 'text-align'
+}
+
 /**
  * Function will return style string for a block.
  */
 export function getBlockStyle(data: { [props: string]: any }): string {
-    let styles = ''
+    const styles: string[] = []
     forEach(data, (key: string, value: any) => {
         if (value) {
-            styles += `${key}:${value};`
+            if (blockDataStyleMap[key]) {
+                // 左对齐无需输出
+                if (key === 'textAlign' && value === 'left') {
+                    return
+                }
+                styles.push(`${blockDataStyleMap[key]}:${value}`)
+            } else {
+                styles.push(`${key}:${value}`)
+            }
         }
     })
-    return styles
+    return styles.join(';')
 }
 
 /**
