@@ -86,5 +86,33 @@ describe('inline style', () => {
             }
         ])
         expect(result).toMatchObject(['<p style="text-align:right"></p>'])
+        result = getResult([
+
+            {
+                inlineStyleRanges: [
+                    {
+                        offset: 0,
+                        length:4,
+                        style: 'COLOR-333333'
+                    },
+                    {
+                        offset:0,
+                        length:4,
+                        style:"FONTSIZE-18"
+                    },
+                    {
+                        offset:0,
+                        length:4,
+                        style:"BGCOLOR-FFFFFF"
+                    }
+                ],
+                text: '先导预告',
+                type: 'header-four',
+                data: {
+                    textAlign: 'center'
+                }
+            }
+        ])
+        expect(result).toMatchObject(['<h4 style="text-align:center"><span style="color: #333333;background-color: #FFFFFF;font-size: 18px;">先导预告</span></h4>'])
     })
 })
