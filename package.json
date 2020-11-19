@@ -99,6 +99,7 @@
     }
   },
   "dependencies": {
-    "lodash.flattendeep": "^4.4.0"
+    "@types/lodash": "^4.14.165",
+    "lodash": "^4.17.20"
   }
 }
