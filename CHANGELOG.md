@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.12](https://github.com/filow/braft-pure-convert/compare/v0.1.11...v0.1.12) (2020-11-19)
+
+
+### Bug Fixes
+
+* 修复lodash.flattenDeep无法调用的问题 ([a4b48dc](https://github.com/filow/braft-pure-convert/commit/a4b48dc6fa36e80cd21e22e089f587fcb5c904af))
+
 ### [0.1.11](https://github.com/filow/braft-pure-convert/compare/v0.1.10...v0.1.11) (2020-11-19)
 
 ### 0.1.10 (2020-11-19)
