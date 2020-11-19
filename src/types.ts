@@ -1,5 +1,3 @@
-import { Entity } from 'draft-js'
-
 export declare namespace DraftJS {
     type DraftInlineStyleType = 'BOLD' | 'CODE' | 'ITALIC' | 'STRIKETHROUGH' | 'UNDERLINE'
     type DraftBlockType =

@@ -1,6 +1,5 @@
 import {
     forEach,
-    isEmptyString,
     trimLeadingZeros,
     trimTrailingZeros,
     mergeTextAndObject
@@ -26,7 +25,8 @@ const blockTypesMapping: { [props: string]: string } = {
 }
 
 const blockDataStyleMap: { [props: string]: string } = {
-    textAlign: 'text-align'
+    textAlign: 'text-align',
+    textIndent: 'text-indent'
 }
 
 /**
@@ -41,8 +41,11 @@ export function getBlockStyle(data: { [props: string]: any }): string {
                 if (key === 'textAlign' && value === 'left') {
                     return
                 }
+                if (key === 'textIndent') {
+                    value = value * 2 + 'em';
+                }
                 styles.push(`${blockDataStyleMap[key]}:${value}`)
-            } else {
+            } else if (typeof value !== 'object') {
                 styles.push(`${key}:${value}`)
             }
         }

@@ -1,4 +1,5 @@
-import flattenDeep from 'lodash.flattendeep'
+// @ts-ignore
+import * as flattenDeep from 'lodash.flattendeep'
 import { BraftPureConvertParams } from './types'
 
 /**

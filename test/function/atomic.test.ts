@@ -1,6 +1,6 @@
 import getResult, { makeData } from '../helper/makeData'
 import BraftPureConvert from '../../src'
-import { DraftJS, BraftPureConvertParams } from '../../src/types'
+
 describe('atomic components', () => {
     it('hr', () => {
         const result = getResult(

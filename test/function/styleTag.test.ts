@@ -1,6 +1,6 @@
 import getResult from '../helper/makeData'
 
-function makeInlineStyleData(text, styleRanges: any[]) {
+function makeInlineStyleData(text: string, styleRanges: any[]) {
     return [
         {
             text,

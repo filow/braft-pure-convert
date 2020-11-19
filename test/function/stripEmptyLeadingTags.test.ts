@@ -1,4 +1,4 @@
-import getResult, { makeData } from '../helper/makeData'
+import { makeData } from '../helper/makeData'
 import BraftPureConvert from '../../src'
 
 const entityData = {
@@ -9,7 +9,7 @@ const entityData = {
         type: 'CUSTOM'
     }
 }
-function testHelper(textData) {
+function testHelper(textData: any[]) {
     const data = makeData(textData, {
         '0': entityData
     })
